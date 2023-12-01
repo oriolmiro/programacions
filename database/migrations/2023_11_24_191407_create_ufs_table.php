@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('ufs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('hours');
+            $table->foreignId('modul_id')->constrained();
             $table->timestamps();
         });
     }

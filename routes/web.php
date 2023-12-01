@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ModulController;
+use App\Http\Controllers\RaController;
+use App\Http\Controllers\UfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('/moduls', ModulController::class);
+Route::resource('/ufs', UfController::class);
+Route::resource('/ras', RaController::class);
+
 
 Route::middleware([
     'auth:sanctum',
