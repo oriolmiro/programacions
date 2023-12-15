@@ -52,6 +52,6 @@ class Modul extends Model
     {
         return $this->hasMany('App\Models\Uf', 'modul_id', 'id');
     }
-    
+
 
 }

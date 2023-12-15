@@ -2,8 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModulController;
-use App\Http\Controllers\RaController;
 use App\Http\Controllers\UfController;
+use App\Http\Controllers\RaController;
+use App\Http\Controllers\CriteriController;
+use App\Http\Controllers\ContingutController;
+use App\Http\Controllers\ProgramacionController ;
+use App\Http\Controllers\ActivitatController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +27,10 @@ Route::get('/', function () {
 Route::resource('/moduls', ModulController::class);
 Route::resource('/ufs', UfController::class);
 Route::resource('/ras', RaController::class);
-
+Route::resource('/criteris', CriteriController::class);
+Route::resource('/continguts', ContingutController::class);
+Route::resource('/programacions', ProgramacionController::class);
+Route::resource('/activitats', ActivitatController::class);
 
 Route::middleware([
     'auth:sanctum',

@@ -38,4 +38,28 @@
             </div>
         </div>
     </section>
+    <!-- llistat de UFS -->
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="float-left">
+                            <span class="card-title">{{ __('Show') }} UFS</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        @foreach($programacion->modul->ufs as $uf)
+                        <div class="form-group">
+                            <strong>{{ $uf->name}}</strong> {{ $uf->hours}}
+                            
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 @endsection

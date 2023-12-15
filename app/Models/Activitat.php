@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -52,45 +53,24 @@ class Activitat extends Model
     protected $fillable = ['title','descripcio','programacion_id','uf_id','ra_ids','criteri_ids','contingut_ids'];
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function activitatContinguts()
+
+    public function continguts(): BelongsToMany
     {
-        return $this->hasMany('App\Models\ActivitatContingut', 'activitat_id', 'id');
+        return $this->belongsToMany(Contingut::class);
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function activitatCriteris()
+
+    public function criteris(): BelongsToMany
     {
-        return $this->hasMany('App\Models\ActivitatCriteri', 'activitat_id', 'id');
+        return $this->belongsToMany(Criteri::class);
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function activitatRas()
+    public function ras(): BelongsToMany
     {
-        return $this->hasMany('App\Models\ActivitatRa', 'activitat_id', 'id');
+        return $this->belongsToMany(Ra::class);
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function contingut()
-    {
-        return $this->hasOne('App\Models\Contingut', 'id', 'contingut_ids');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function criteri()
-    {
-        return $this->hasOne('App\Models\Criteri', 'id', 'criteri_ids');
-    }
+
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -100,13 +80,6 @@ class Activitat extends Model
         return $this->hasOne('App\Models\Programacion', 'id', 'programacion_id');
     }
     
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function ra()
-    {
-        return $this->hasOne('App\Models\Ra', 'id', 'ra_ids');
-    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
