@@ -12,9 +12,19 @@
             {!! $errors->first('descripcio', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('programacion_id') }}
-            {{ Form::text('programacion_id', $activitat->programacion_id, ['class' => 'form-control' . ($errors->has('programacion_id') ? ' is-invalid' : ''), 'placeholder' => 'Programacion Id']) }}
-            {!! $errors->first('programacion_id', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('hores') }}
+            {{ Form::text('hores', $activitat->hores, ['class' => 'form-control' . ($errors->has('hores') ? ' is-invalid' : ''), 'placeholder' => 'Hores']) }}
+            {!! $errors->first('hores', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group">
+            <label for="programacion_id">Programcio</label>
+            <select class="form-control" name="programacion_id" id="programacion_id">
+                @foreach (\App\Models\Programacion::all() as $programacion)
+                    <option value="{{ $programacion->id }}" {{ $programacion->id == $activitat->programacion_id ? 'selected' : '' }}>{{ $programacion->modul->name }} ( {{ $programacion->any }} )</option>
+                @endforeach
+            </select>
+            {!! $errors->first('programacio_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('uf_id') }}

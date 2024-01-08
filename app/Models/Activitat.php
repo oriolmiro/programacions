@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,6 +40,7 @@ class Activitat extends Model
 		'ra_ids' => 'required',
 		'criteri_ids' => 'required',
 		'contingut_ids' => 'required',
+        'hores' => 'required',
     ];
 
     protected $perPage = 20;
@@ -50,27 +50,48 @@ class Activitat extends Model
      *
      * @var array
      */
-    protected $fillable = ['title','descripcio','programacion_id','uf_id','ra_ids','criteri_ids','contingut_ids'];
+    protected $fillable = ['title','descripcio','hores','programacion_id','uf_id','ra_ids','criteri_ids','contingut_ids'];
 
 
-
-    public function continguts(): BelongsToMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activitatContinguts()
     {
-        return $this->belongsToMany(Contingut::class);
+        return $this->hasMany('App\Models\ActivitatContingut', 'activitat_id', 'id');
     }
     
-
-    public function criteris(): BelongsToMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activitatCriteris()
     {
-        return $this->belongsToMany(Criteri::class);
+        return $this->hasMany('App\Models\ActivitatCriteri', 'activitat_id', 'id');
     }
     
-    public function ras(): BelongsToMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function activitatRas()
     {
-        return $this->belongsToMany(Ra::class);
+        return $this->hasMany('App\Models\ActivitatRa', 'activitat_id', 'id');
     }
     
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function contingut()
+    {
+        return $this->hasOne('App\Models\Contingut', 'id', 'contingut_ids');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function criteri()
+    {
+        return $this->hasOne('App\Models\Criteri', 'id', 'criteri_ids');
+    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -80,6 +101,13 @@ class Activitat extends Model
         return $this->hasOne('App\Models\Programacion', 'id', 'programacion_id');
     }
     
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function ra()
+    {
+        return $this->hasOne('App\Models\Ra', 'id', 'ra_ids');
+    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

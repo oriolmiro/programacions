@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activitat;
+use App\Models\Programacion;
 use Illuminate\Http\Request;
 
 /**
@@ -31,8 +32,8 @@ class ActivitatController extends Controller
      */
     public function create()
     {
-        $activitat = new Activitat();
-        return view('activitat.create', compact('activitat'));
+        $programacions = Programacion::all();
+        return view('activitat.create', compact('programacions'));
     }
 
     /**
@@ -43,7 +44,7 @@ class ActivitatController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Activitat::$rules);
+        //request()->validate(Activitat::$rules);
 
         $activitat = Activitat::create($request->all());
 
@@ -73,8 +74,9 @@ class ActivitatController extends Controller
     public function edit($id)
     {
         $activitat = Activitat::find($id);
+        $programacions = Programacion::all();
 
-        return view('activitat.edit', compact('activitat'));
+        return view('activitat.edit', compact('activitat', 'programacions'));
     }
 
     /**

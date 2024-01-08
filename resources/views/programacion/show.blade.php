@@ -53,7 +53,9 @@
                         @foreach($programacion->modul->ufs as $uf)
                         <div class="form-group">
                             <strong>{{ $uf->name}}</strong> {{ $uf->hours}}
-                            
+                            @foreach($progamacion->activitats->where('uf_id', $uf->id) as $activitat)
+                                <p>hola</p>
+                            @endforeach
                         </div>
                         @endforeach
                     </div>

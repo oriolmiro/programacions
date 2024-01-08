@@ -37,7 +37,7 @@
                                         <th>No</th>
                                         
 										<th>Title</th>
-										<th>Descripcio</th>
+										<th>Hores</th>
 										<th>Programacion Id</th>
 										<th>Uf Id</th>
 										<th>Ra Ids</th>
@@ -53,8 +53,8 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $activitat->title }}</td>
-											<td>{{ $activitat->descripcio }}</td>
-											<td>{{ $activitat->programacion_id }}</td>
+											<td>{{ $activitat->hores }}</td>
+											<td>{{ $activitat->programacion->modul->name }}</td>
 											<td>{{ $activitat->uf_id }}</td>
 											<td>{{ $activitat->ra_ids }}</td>
 											<td>{{ $activitat->criteri_ids }}</td>
